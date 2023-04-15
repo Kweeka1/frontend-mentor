@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'ubuntu';
+  src: url("./assets/fonts/Ubuntu-Regular.ttf");
+}
+
+@font-face {
+  font-family: 'ubuntu-md';
+  src: url("./assets/fonts/Ubuntu-Medium.ttf");
+}
+
+@font-face {
+  font-family: 'ubuntu-bd';
+  src: url("./assets/fonts/Ubuntu-Bold.ttf");
+}
+
+:root {
+  font-family: 'ubuntu', sans-serif;
+  width: 100vw;
+  height: 100vh;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  @apply bg-cyan-50 min-h-full min-w-full m-0 flex justify-center items-center;
+}
