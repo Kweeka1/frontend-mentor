@@ -4,17 +4,17 @@
 
 @font-face {
   font-family: 'ubuntu';
-  src: url("./assets/fonts/Ubuntu-Regular.ttf");
+  src: url("./fonts/Ubuntu-Regular.ttf");
 }
 
 @font-face {
   font-family: 'ubuntu-md';
-  src: url("./assets/fonts/Ubuntu-Medium.ttf");
+  src: url("./fonts/Ubuntu-Medium.ttf");
 }
 
 @font-face {
   font-family: 'ubuntu-bd';
-  src: url("./assets/fonts/Ubuntu-Bold.ttf");
+  src: url("./fonts/Ubuntu-Bold.ttf");
 }
 
 :root {
