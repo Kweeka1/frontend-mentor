@@ -1,11 +1,6 @@
 import Field from "../ui/Field";
 
-type PersonalInfoProps = {
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  form: IForm,
-}
-
-const PersonalInfo: React.FC<PersonalInfoProps> = ({ form, handleChange }) => {
+const PersonalInfo: React.FC<SubFormProps> = ({ form, handleChange }) => {
   const { name, email, phone } = form;
 
   return (

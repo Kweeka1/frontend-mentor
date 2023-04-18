@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 interface FieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	label: string;
 	id: string;
@@ -6,16 +8,28 @@ interface FieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Field: React.FC<FieldProps> = ({ label, errorMessage, id, ...props}) => {
+	const [error, setError] = useState(false);
+
+	const showError = () => {
+		setError(true);
+	}
+
+	const hideError = () => {
+		setError(false);
+	}
+
   return (
 		<div className="w-full">
-			<label htmlFor={id} className="block text-sm font-medium text-gray-700">
-				{label}
-			</label>
-			<div id={id} className="mt-2 relative">
-				<input {...props} className="shadow-sm peer pl-3 py-[0.6rem] text-slate-600 font-ubuntu-bd border focus:border-gray-400 focus-visible:ring-gray-400 focus-visible:border-gray-400 block w-full sm:text-sm rounded-md border-gray-300 invalid:border-red-500" />
-				<span className="invisible absolute right-0 top-[-28px] peer-invalid:visible text-red-500 font-ubuntu-bd text-sm m-0 p-0">
+			<div className="flex justify-between">
+				<label htmlFor={id} className="block text-sm font-medium text-gray-700">
+					{label}
+				</label>
+				<span className={`${error ? 'block' : 'hidden' } text-red-500 font-ubuntu-bd text-sm m-0 p-0`}>
 					{errorMessage}
 				</span>
+			</div>
+			<div id={id} className="mt-2 relative">
+				<input {...props} onInput={hideError} onInvalid={showError} className={`shadow-sm peer pl-3 py-[0.6rem] text-slate-600 font-ubuntu-bd border focus:border-gray-400 focus-visible:ring-gray-400 focus-visible:border-gray-400 block w-full sm:text-sm rounded-md ${error ? 'border-red-500' : 'border-gray-300'}`} />
 			</div>
 		</div>
 	)
