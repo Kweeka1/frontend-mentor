@@ -1,10 +1,13 @@
 import Field from "../ui/Field";
 
 type PersonalInfoProps = {
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  form: IForm,
 }
 
-const PersonalInfo: React.FC<PersonalInfoProps> = ({ handleChange }) => {
+const PersonalInfo: React.FC<PersonalInfoProps> = ({ form, handleChange }) => {
+  const { name, email, phone } = form;
+
   return (
     <div className="flex flex-col">
       <h1 className="text-3xl font-ubuntu-bd text-slate-700 tracking-wide">
@@ -16,24 +19,30 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ handleChange }) => {
       <div className="py-8 flex flex-col gap-5">
         <Field
           required
+          errorMessage="This field is required"
           name="name"
           onChange={handleChange}
           label="Name"
           id="name"
+          value={name}
         />
         <Field
           required
+          errorMessage="This field is required"
           name="email"
           onChange={handleChange}
           label="Email Address"
           id="email"
+          value={email}
         />
         <Field
           required
+          errorMessage="This field is required"
           name="phone"
           onChange={handleChange}
           label="Phone Number"
           id="phone"
+          value={phone}
         />
       </div>
     </div>
