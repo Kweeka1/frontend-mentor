@@ -1,4 +1,5 @@
 import QualityCard from "../ui/QualityCard";
+import Switch from "../ui/Switch";
 
 const Plan: React.FC<SubFormProps> = ({ form, handleChange }) => {
   const { frequency, price } = form;
@@ -16,6 +17,11 @@ const Plan: React.FC<SubFormProps> = ({ form, handleChange }) => {
           <QualityCard price={price} frequency={frequency} quality="arcade" />
           <QualityCard price={price} frequency={frequency} quality="advanced" />
           <QualityCard price={price} frequency={frequency} quality="pro" />
+        </div>
+        <div className="flex gap-4 justify-center items-center p-4 bg-gray-100 rounded-md">
+          <p className="text-slate-700 font-ubuntu-md">Monthly</p>
+          <Switch  />
+          <p className="text-slate-700 font-ubuntu-md">Yearly</p>
         </div>
       </div>
     </div>
