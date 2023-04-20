@@ -3,7 +3,7 @@ interface IForm {
   email: string;
   phone: string;
   plan: string;
-  frequency: Frequency;
+  isYearlyPlan: boolean;
   quality: Quality;
   price: Price;
   addons: string[];
@@ -11,7 +11,9 @@ interface IForm {
 
 type Frequency = "monthly" | "yearly";
 
-type Quality = "advanced" | "pro" | "arcade";
+type QualityTypes = "advanced" | "pro" | "arcade";
+
+type Quality = QualityTypes;
 
 type Price = {
   monthly: {
@@ -40,6 +42,8 @@ interface IStep {
 }
 
 type SubFormProps = {
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  onSwitchChange?: () => void,
+  onPlanChange?: (quality: QualityTypes) => void,
   form: IForm,
 }
