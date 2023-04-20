@@ -1,24 +1,24 @@
 {
-  "name": "",
-  "email": "",
-  "phone": "",
+  "name": "dsf",
+  "email": "sdf",
+  "phone": "fsdf",
   "plan": "",
-  "frequency": "monthly",
+  "isYearlyPlan": false,
   "quality": "arcade",
   "price": {
     "yearly": {
       "values": {
-        "advanced": 0,
-        "arcade": 0,
-        "pro": 0
+        "advanced": 120,
+        "arcade": 90,
+        "pro": 150
       },
       "name": "yr"
     },
     "monthly": {
       "values": {
-        "advanced": 0,
-        "arcade": 0,
-        "pro": 0
+        "advanced": 12,
+        "arcade": 9,
+        "pro": 15
       },
       "name": "mo"
     }
