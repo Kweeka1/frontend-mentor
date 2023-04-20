@@ -1,0 +1,18 @@
+[
+  {
+    "name": "your info",
+    "fields": ["name", "email", "phone"]
+  },
+  {
+    "name": "select plan",
+    "fields": ["plan", "frequency"]
+  },
+  {
+    "name": "add-ons",
+    "fields": ["addons"]
+  },
+  {
+    "name": "summary",
+    "fields": []
+  }
+]
