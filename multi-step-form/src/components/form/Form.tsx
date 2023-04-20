@@ -3,37 +3,26 @@ import PersonalInfo from "../personalInfo/PersonalInfo";
 import Plan from "../plan/Plan";
 import Step from "../ui/Step";
 import formData from "../../data/form.json";
+import steps from "../../data/steps.json";
 import "./form.css"
 
 const Form = () => {
   const [form, setForm] = useState<IForm>(formData as IForm);
-
   const [currentStep, setCurrentStep] = useState<number>(1);
-
-  const steps: IStep[] = [
-    {
-      name: "your info",
-      fields: ['name', 'email', 'phone']
-    },
-    {
-      name: "select plan",
-      fields: ['plan', 'frequency']
-    },
-    {
-      name: "add-ons",
-      fields: ['addons']
-    },
-    {
-      name: "summary",
-      fields: []
-    },
-  ];
 
   const formRef = useRef<HTMLFormElement | null>(null);
 
   const handleFormSubmit = (ev: SyntheticEvent) => {
     ev.preventDefault();
     console.log(form);
+  }
+
+  const handleSwitchChange = () => {
+    setForm({ ...form, isYearlyPlan: !form.isYearlyPlan });
+  }
+
+  const handlePlanSelection = (quality: QualityTypes) => {
+    setForm({ ...form, quality });
   }
 
   const validateStep = () => {
@@ -66,7 +55,7 @@ const Form = () => {
       <div className="pt-2 px-4 h-full w-[507px]">
         <form ref={formRef} className="p-4 h-full flex flex-col justify-between">
           { currentStep === 1 && <PersonalInfo form={form} handleChange={handleInput} /> }
-          { currentStep === 2 && <Plan form={form} handleChange={handleInput} /> }
+          { currentStep === 2 && <Plan form={form} onSwitchChange={handleSwitchChange} onPlanChange={handlePlanSelection} /> }
           { currentStep === 3 && <PersonalInfo form={form} handleChange={handleInput} /> }
           { currentStep === 4 && <PersonalInfo form={form} handleChange={handleInput} /> }
           <div className={`flex ${currentStep === 1 ? 'justify-end' : 'justify-between'} items-center`}>
