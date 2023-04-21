@@ -9,29 +9,19 @@ interface IForm {
   addons: string[];
 }
 
+type Quality = "advanced" | "pro" | "arcade";
+
 type Frequency = "monthly" | "yearly";
 
-type QualityTypes = "advanced" | "pro" | "arcade";
-
-type Quality = QualityTypes;
+type FrequencyValue = {
+  [key in Quality]: number;
+}
 
 type Price = {
-  monthly: {
-    values: {
-      advanced: number,
-      pro: number,
-      arcade: number,
-    },
-    name: "mo",
-  };
-  yearly: {
-    values: {
-      advanced: number,
-      pro: number,
-      arcade: number,
-    },
-    name: "yr",
-  };
+  [key in Frequency]: {
+    values: FrequencyValue;
+    name: "mo" | "yr";
+  }
 }
 
 type StepFieldName = 'name' | 'email' | 'phone' | 'plan' | 'frequency' | 'addons';
@@ -39,11 +29,4 @@ type StepFieldName = 'name' | 'email' | 'phone' | 'plan' | 'frequency' | 'addons
 interface IStep {
   name: string,
   fields: StepFieldName[],
-}
-
-type SubFormProps = {
-  handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  onSwitchChange?: () => void,
-  onPlanChange?: (quality: QualityTypes) => void,
-  form: IForm,
 }
