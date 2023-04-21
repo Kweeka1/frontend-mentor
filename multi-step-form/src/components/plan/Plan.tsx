@@ -4,7 +4,7 @@ import Switch from "../ui/Switch";
 interface PlanProps {
   form: IForm;
   onSwitchChange: () => void;
-  onPlanChange: (type: QualityTypes) => void;
+  onPlanChange: (type: Quality) => void;
 }
 
 const Plan: React.FC<PlanProps> = ({
@@ -25,6 +25,9 @@ const Plan: React.FC<PlanProps> = ({
       </p>
       <div className="py-8 flex flex-col gap-5">
         <div className="flex justify-between">
+          {
+            
+          }
           <QualityCard
             type="arcade"
             onClick={() => onPlanChange("arcade")}
@@ -55,7 +58,7 @@ const Plan: React.FC<PlanProps> = ({
           >
             Monthly
           </p>
-          <Switch onCheckedChange={onSwitchChange} />
+          <Switch checked={isYearlyPlan} onCheckedChange={onSwitchChange} />
           <p
             className={`${
               isYearlyPlan ? "text-slate-700" : "text-slate-400"

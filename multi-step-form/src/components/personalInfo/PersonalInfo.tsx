@@ -1,6 +1,12 @@
 import Field from "../ui/Field";
+import { ChangeEvent } from "react";
 
-const PersonalInfo: React.FC<SubFormProps> = ({ form, handleChange }) => {
+interface PersonalInfoProps {
+  form: IForm;
+  handleChange: (ev: ChangeEvent<HTMLInputElement>) => void;
+}
+
+const PersonalInfo: React.FC<PersonalInfoProps> = ({ form, handleChange }) => {
   const { name, email, phone } = form;
 
   return (
