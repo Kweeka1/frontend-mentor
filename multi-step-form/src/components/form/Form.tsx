@@ -5,6 +5,7 @@ import Step from "../ui/Step";
 import formData from "../../data/form.json";
 import steps from "../../data/steps.json";
 import "./form.css"
+import Addons from "../addons/Addons";
 
 const Form = () => {
   const [form, setForm] = useState<IForm>(formData as IForm);
@@ -21,7 +22,7 @@ const Form = () => {
     setForm({ ...form, isYearlyPlan: !form.isYearlyPlan });
   }
 
-  const handlePlanSelection = (quality: QualityTypes) => {
+  const handlePlanSelection = (quality: Quality) => {
     setForm({ ...form, quality });
   }
 
@@ -56,7 +57,7 @@ const Form = () => {
         <form ref={formRef} className="p-4 h-full flex flex-col justify-between">
           { currentStep === 1 && <PersonalInfo form={form} handleChange={handleInput} /> }
           { currentStep === 2 && <Plan form={form} onSwitchChange={handleSwitchChange} onPlanChange={handlePlanSelection} /> }
-          { currentStep === 3 && <PersonalInfo form={form} handleChange={handleInput} /> }
+          { currentStep === 3 && <Addons form={form} handleChange={handleInput} /> }
           { currentStep === 4 && <PersonalInfo form={form} handleChange={handleInput} /> }
           <div className={`flex ${currentStep === 1 ? 'justify-end' : 'justify-between'} items-center`}>
             {
