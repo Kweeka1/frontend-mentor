@@ -25,9 +25,6 @@ const Plan: React.FC<PlanProps> = ({
       </p>
       <div className="py-8 flex flex-col gap-5">
         <div className="flex justify-between">
-          {
-            
-          }
           <QualityCard
             type="arcade"
             onClick={() => onPlanChange("arcade")}
