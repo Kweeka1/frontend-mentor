@@ -1,13 +1,16 @@
-interface AddonsProps {
+interface AddonsProps extends React.HTMLAttributes<HTMLDivElement> {
   isSelected?: boolean;
   addonTitle: string;
   addonDescription: string;
+  frequency: Frequency;
+  price: { [key in Frequency]: number };
 }
 
-const Addon: React.FC<AddonsProps> = ({ isSelected, addonTitle, addonDescription }) => {
+const Addon: React.FC<AddonsProps> = ({ isSelected, addonTitle, addonDescription, price, frequency, ...props }) => {
+  const freq = frequency === "yearly" ? 'yr' : 'mo';
 
   return (
-    <div className={`${isSelected ? 'bg-slate-100' : 'border-gray-300'} cursor-pointer border-[#483eff] border flex justify-between items-center px-4 py-2 rounded-md w-full`}>
+    <div {...props} className={`${isSelected ? 'bg-slate-100' : 'border-gray-300'} cursor-pointer border-[#483eff] border flex justify-between items-center px-4 py-2 rounded-md w-full`}>
       <svg className="checkbox-symbol">
         <symbol id="check" viewBox="0 0 12 10">
           <polyline
@@ -35,7 +38,7 @@ const Addon: React.FC<AddonsProps> = ({ isSelected, addonTitle, addonDescription
         </div>
       </div>
       <div>
-        <p className="font-ubuntu-md text-sm text-slate-500 py-[2px]">+$10/yr</p>
+        <p className="font-ubuntu-md text-sm text-slate-500 py-[2px]">+${price[frequency]}/{freq}</p>
       </div>
     </div>
   )

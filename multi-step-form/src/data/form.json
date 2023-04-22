@@ -23,5 +23,33 @@
       "name": "mo"
     }
   },
-  "addons": []
+  "addons": {
+    "onlineService": {
+      "title": "Online service",
+      "description": "Access to multiplayer games",
+      "isSelected": false,
+      "price": {
+        "yearly": 10,
+        "monthly": 1
+      }
+    },
+    "largerStorage": {
+      "title": "Larger storage",
+      "description": "Extra 1TB of cloud save",
+      "isSelected": false,
+      "price": {
+        "yearly": 20,
+        "monthly": 2
+      }
+    },
+    "customizableProfile": {
+      "title": "Customizable profile",
+      "description": "Custom theme on your profile",
+      "isSelected": false,
+      "price": {
+        "yearly": 20,
+        "monthly": 2
+      }
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import { ChangeEvent, SyntheticEvent, useRef, useState } from "react";
+import { ChangeEvent, MouseEventHandler, SyntheticEvent, useRef, useState } from "react";
 import PersonalInfo from "../personalInfo/PersonalInfo";
 import Plan from "../plan/Plan";
 import Step from "../ui/Step";
@@ -36,6 +36,19 @@ const Form = () => {
     }
   }
 
+  const handleAddonSelection = (addonTitle: CurrentAddons) => {
+    setForm({
+      ...form,
+      addons: {
+        ...form.addons,
+        [addonTitle]: {
+          ...form.addons[addonTitle],
+          isSelected: !form.addons[addonTitle].isSelected,
+        },
+      }
+    });
+  }
+
   const handleInput = (ev: ChangeEvent<HTMLInputElement>) =>
     setForm({ ...form, [ev.target.name]: ev.target.value });
 
@@ -57,7 +70,7 @@ const Form = () => {
         <form ref={formRef} className="p-4 h-full flex flex-col justify-between">
           { currentStep === 1 && <PersonalInfo form={form} handleChange={handleInput} /> }
           { currentStep === 2 && <Plan form={form} onSwitchChange={handleSwitchChange} onPlanChange={handlePlanSelection} /> }
-          { currentStep === 3 && <Addons form={form} handleChange={handleInput} /> }
+          { currentStep === 3 && <Addons form={form} onAddonSelection={handleAddonSelection} /> }
           { currentStep === 4 && <PersonalInfo form={form} handleChange={handleInput} /> }
           <div className={`flex ${currentStep === 1 ? 'justify-end' : 'justify-between'} items-center`}>
             {
