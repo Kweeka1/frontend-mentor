@@ -6,10 +6,23 @@ interface IForm {
   isYearlyPlan: boolean;
   quality: Quality;
   price: Price;
-  addons: string[];
+  addons: {
+    [key in CurrentAddons]: Addon;
+  };
 }
 
 type Quality = "advanced" | "pro" | "arcade";
+
+type CurrentAddons = "onlineService" | "largerStorage" | "customizableProfile";
+
+type Addon = {
+  title: string;
+  description: string;
+  isSelected: boolean;
+  price: {
+    [key in Frequency]: number;
+  }
+}
 
 type Frequency = "monthly" | "yearly";
 
