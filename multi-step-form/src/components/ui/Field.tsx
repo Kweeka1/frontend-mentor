@@ -28,7 +28,7 @@ const Field: React.FC<FieldProps> = ({ label, errorMessage, id, ...props}) => {
 				</span>
 			</div>
 			<div id={id} className="mt-2 relative">
-				<input {...props} onInput={hideError} onInvalid={showError} className={`shadow-sm peer pl-3 py-[0.6rem] text-slate-600 font-ubuntu-bd border focus:border-gray-400 focus-visible:ring-gray-400 focus-visible:border-gray-400 block w-full sm:text-sm rounded-md ${error ? 'border-red-500' : 'border-gray-300'}`} />
+				<input {...props} onInput={hideError} onInvalid={showError} className={`shadow-sm peer pl-3 py-[0.6rem] text-slate-600 font-ubuntu-bd border focus-visible:border-[#483EFF] outline-none block w-full sm:text-sm rounded-md ${error ? 'border-red-500' : 'border-gray-300'}`} />
 			</div>
 		</div>
 	)
