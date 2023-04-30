@@ -38,7 +38,7 @@ const Addon: React.FC<AddonsProps> = ({ isSelected, addonTitle, addonDescription
         </div>
       </div>
       <div>
-        <p className="font-ubuntu-md text-sm text-slate-500 py-[2px]">+${price[frequency]}/{freq}</p>
+        <p className="font-ubuntu-md text-sm text-[#483eff] py-[2px]">+${price[frequency]}/{freq}</p>
       </div>
     </div>
   )
