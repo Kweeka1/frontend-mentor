@@ -6,6 +6,7 @@ import formData from "../../data/form.json";
 import steps from "../../data/steps.json";
 import "./form.css"
 import Addons from "../addons/Addons";
+import Summary from "../summary/Summary";
 
 const Form = () => {
   const [form, setForm] = useState<IForm>(formData as IForm);
@@ -71,7 +72,7 @@ const Form = () => {
           { currentStep === 1 && <PersonalInfo form={form} handleChange={handleInput} /> }
           { currentStep === 2 && <Plan form={form} onSwitchChange={handleSwitchChange} onPlanChange={handlePlanSelection} /> }
           { currentStep === 3 && <Addons form={form} onAddonSelection={handleAddonSelection} /> }
-          { currentStep === 4 && <PersonalInfo form={form} handleChange={handleInput} /> }
+          { currentStep === 4 && <Summary form={form} /> }
           <div className={`flex ${currentStep === 1 ? 'justify-end' : 'justify-between'} items-center`}>
             {
               currentStep !== 1 && (
@@ -89,7 +90,7 @@ const Form = () => {
                 <button
                   type="button"
                   onClick={validateStep}
-                  className="px-4 py-2 text-sm text-white bg-blue-800 hover:bg-blue-900 rounded-md"
+                  className="px-6 py-3 text-sm text-white bg-blue-800 hover:bg-blue-900 rounded-md"
                 >
                   Next Step
                 </button>
@@ -97,9 +98,9 @@ const Form = () => {
                 <button
                   type="button"
                   onClick={handleFormSubmit}
-                  className="px-4 py-2 text-sm text-white bg-blue-800 hover:bg-blue-900 rounded-md"
+                  className="px-6 py-3 text-light font-ubuntu-md text-white bg-[#483EFF] hover:bg-blue-900 rounded-md duration-150 ease-in"
                 >
-                  Submit
+                  Confirm
                 </button>
               )
             }
