@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEventHandler, SyntheticEvent, useRef, useState } from "react";
+import { ChangeEvent, SyntheticEvent, useRef, useState } from "react";
 import PersonalInfo from "../personalInfo/PersonalInfo";
 import Plan from "../plan/Plan";
 import Step from "../ui/Step";
@@ -98,7 +98,7 @@ const Form = () => {
                 <button
                   type="button"
                   onClick={handleFormSubmit}
-                  className="px-6 py-3 text-light font-ubuntu-md text-white bg-[#483EFF] hover:bg-blue-900 rounded-md duration-150 ease-in"
+                  className="px-6 py-3 text-light font-ubuntu-md text-white bg-[#483EFF] hover:opacity-80 rounded-md duration-150 ease-in"
                 >
                   Confirm
                 </button>
