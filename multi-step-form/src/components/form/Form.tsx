@@ -4,9 +4,10 @@ import Plan from "../plan/Plan";
 import Step from "../ui/Step";
 import formData from "../../data/form.json";
 import steps from "../../data/steps.json";
-import "./form.css"
+import "./form.css";
 import Addons from "../addons/Addons";
 import Summary from "../summary/Summary";
+import SubscriptionSuccess from './../SubscriptionSuccess/SubscriptionSuccess';
 
 const Form = () => {
   const [form, setForm] = useState<IForm>(formData as IForm);
@@ -17,15 +18,16 @@ const Form = () => {
   const handleFormSubmit = (ev: SyntheticEvent) => {
     ev.preventDefault();
     console.log(form);
-  }
+    setCurrentStep(currentStep + 1);
+  };
 
   const handleSwitchChange = () => {
     setForm({ ...form, isYearlyPlan: !form.isYearlyPlan });
-  }
+  };
 
   const handlePlanSelection = (quality: Quality) => {
     setForm({ ...form, quality });
-  }
+  };
 
   const validateStep = () => {
     if (formRef.current) {
@@ -35,7 +37,7 @@ const Form = () => {
         setCurrentStep(currentStep + 1);
       }
     }
-  }
+  };
 
   const handleAddonSelection = (addonTitle: CurrentAddons) => {
     setForm({
@@ -46,9 +48,9 @@ const Form = () => {
           ...form.addons[addonTitle],
           isSelected: !form.addons[addonTitle].isSelected,
         },
-      }
+      },
     });
-  }
+  };
 
   const handleInput = (ev: ChangeEvent<HTMLInputElement>) =>
     setForm({ ...form, [ev.target.name]: ev.target.value });
@@ -56,26 +58,30 @@ const Form = () => {
   return (
     <div className="p-4 flex rounded-lg h-[550px] gap-8 shadow-lg bg-slate-50">
       <div className="background rounded-md w-[220px] h-full p-8 flex flex-col gap-6">
-        {
-          steps.map((step, index) => (
-            <Step
-              key={step.name}
-              stepNumber={index + 1}
-              stepDescription={step.name}
-              selected={currentStep === index + 1}
-            />
-          ))
-        }
+        {steps.map((step, index) => (
+          <Step
+            key={step.name}
+            stepNumber={index + 1}
+            stepDescription={step.name}
+            selected={currentStep === index + 1}
+          />
+        ))}
       </div>
       <div className="pt-2 px-4 h-full w-[507px]">
-        <form ref={formRef} className="p-4 h-full flex flex-col justify-between">
-          { currentStep === 1 && <PersonalInfo form={form} handleChange={handleInput} /> }
-          { currentStep === 2 && <Plan form={form} onSwitchChange={handleSwitchChange} onPlanChange={handlePlanSelection} /> }
-          { currentStep === 3 && <Addons form={form} onAddonSelection={handleAddonSelection} /> }
-          { currentStep === 4 && <Summary form={form} /> }
-          <div className={`flex ${currentStep === 1 ? 'justify-end' : 'justify-between'} items-center`}>
-            {
-              currentStep !== 1 && (
+        {currentStep === 5 ? (
+          <SubscriptionSuccess />
+        ) : (
+          <form ref={formRef} className="p-4 h-full flex flex-col justify-between">
+            {currentStep === 1 && (
+              <PersonalInfo form={form} handleChange={handleInput} />
+            )}
+            {currentStep === 2 && (
+              <Plan form={form} onSwitchChange={handleSwitchChange} onPlanChange={handlePlanSelection} />
+            )}
+            {currentStep === 3 && (<Addons form={form} onAddonSelection={handleAddonSelection} />)}
+            {currentStep === 4 && <Summary form={form} />}
+            <div className={`flex ${currentStep === 1 ? "justify-end" : "justify-between"} items-center`}>
+              {currentStep !== 1 && (
                 <button
                   type="button"
                   onClick={() => setCurrentStep(currentStep - 1)}
@@ -83,10 +89,8 @@ const Form = () => {
                 >
                   Go back
                 </button>
-              )
-            }
-            {
-              currentStep !== steps.length ? (
+              )}
+              {currentStep !== steps.length ? (
                 <button
                   type="button"
                   onClick={validateStep}
@@ -102,10 +106,10 @@ const Form = () => {
                 >
                   Confirm
                 </button>
-              )
-            }
-          </div>
-        </form>
+              )}
+            </div>
+          </form>
+        )}
       </div>
     </div>
   );
